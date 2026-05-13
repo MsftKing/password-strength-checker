@@ -5,12 +5,10 @@
 
 # Purpose 
 <h2>This project was created to practice: </h2>
-<ul>
-  <li>Basic Java programming</li>
-  <li>Conditional logic</li>
-  <li>String handling</li>
-  <li>Cybersecurity fundamentals (password security)</li>
-</ul>
+Basic Java programming
+Conditional logic 
+String handling
+Cybersecurity fundamental (password security)
 
 ## Features
 <ul>
