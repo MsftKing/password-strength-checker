@@ -56,7 +56,7 @@ public class PasswordStrengthChecker {
 	public static boolean hasUppercase(String password) {
 		if (password.matches(".*[A-Z].*")) {
 			return true;
-		} else {
+		}else {
 			System.out.println("*** PASSWORD MUST CONTAIN AT LEAST ONE UPPERCASE ***");
 			return false;
 		}
@@ -77,7 +77,12 @@ public class PasswordStrengthChecker {
 		}
 	}
 	
-	
+	/**
+	 * Determines the strength level of the password
+	 * @param strengthScore ranges from 0-3 based on password input
+	 * @param password user created password
+	 * @return weak, medium, strong based on a score between 1-3
+	 */
 	public static String passwordStrength(int strengthScore, String password) {
 		
 		if (isCorrectLength(password)) {
@@ -89,14 +94,31 @@ public class PasswordStrengthChecker {
 		if(hasSpecialCharacter(password)) {
 			strengthScore++;
 		}
+		if (hasNumbers(password)) {
+			strengthScore++;
+		}
 		
 		if (strengthScore == 1) {
 			return "Weak";
-		} else if (strengthScore == 2) {
+		} else if (strengthScore == 3 || strengthScore == 2) {
 			return "Medium";
-		} else if (strengthScore == 3) {
+		} else if (strengthScore == 4) {
 			return "Strong";
 		}
 		return "*** PASSWORD NOT STRONG ENOUGH TRY AGAIN ***";
+	}
+	
+	/**
+	 * Determines if the password contains a number
+	 * @param password user entered password
+	 * @return if password contains at least one number return true else false
+	 */
+	public static boolean hasNumbers(String password) {
+		if (password.matches(".*\\d.*")) {
+			return true;
+		} else {
+			System.out.println("*** PASSWORD MUST CONTAIN AT LEAST ONE NUMBER ***");
+			return false;
+		}
 	}
 }
