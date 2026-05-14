@@ -13,9 +13,28 @@ public class PasswordStrengthChecker {
 		if (isCorrectLength(password)) {
 			strengthScore++;
 		}
+		if(hasUppercase(password)) {
+			strengthScore++;
+		}
+		if(hasSpecialCharacter(password)) {
+			strengthScore++;
+		}
 		//Display Result
-		System.out.println(password);
+		System.out.println(hideCharacters(password));
 		System.out.println(strengthScore);
+	}
+	
+	
+	
+	public static String hideCharacters(String password) {
+		
+		String hiddenPassword = "";
+		
+		for (int i = 0; i < password.length(); i++) {
+			hiddenPassword += "*";
+		}
+		
+		return hiddenPassword;
 	}
 	
 	/**
@@ -27,15 +46,40 @@ public class PasswordStrengthChecker {
 	
 	
 	public static boolean isCorrectLength(String password) {
-		if (password.length() >= 8) {
+		if (password.length() >= 8 && !password.contains(" ")) {
 			return true;
 		} else {
-			System.out.print("*** PASSWORD LENGTH INCORRECT ***");
+			System.out.println("*** PASSWORD LENGTH INCORRECT ***");
+			return false;
+		}
+	}
+
+	/**
+	 * Determines if the password contains an upper case character
+	 * @param password user created password
+	 * @return true is password contains an upper case else false
+	 */
+	public static boolean hasUppercase(String password) {
+		if (password.matches(".*[A-Z].*")) {
+			return true;
+		} else {
+			System.out.println("*** PASSWORD MUST CONTAIN AT LEAST ONE UPPERCASE ***");
 			return false;
 		}
 	}
 	
 	/**
-	 * checkUppercase determines if the password contains at least one uppercase letter
+	 * Determines if the password contains a special character
+	 * @param password user created password
+	 * @return true if password contains a special character else false
 	 */
+	
+	public static boolean hasSpecialCharacter(String password) {
+		if (password.matches(".*[!-*].*")) {
+			return true;
+		} else {
+			System.out.println("*** PASSWORD MUST CONTAIN AT LEAST ONE SPECIAL CHARACTER ***");
+			return false;
+		}
+	}
 }
