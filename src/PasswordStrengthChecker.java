@@ -9,23 +9,19 @@ public class PasswordStrengthChecker {
 		
 		System.out.print("Enter your password: ");
 		String password = scnr.nextLine();
+		
+		
 		//Check password Strength
-		if (isCorrectLength(password)) {
-			strengthScore++;
-		}
-		if(hasUppercase(password)) {
-			strengthScore++;
-		}
-		if(hasSpecialCharacter(password)) {
-			strengthScore++;
-		}
 		//Display Result
 		System.out.println(hideCharacters(password));
-		System.out.println(strengthScore);
+		System.out.println(passwordStrength(strengthScore, password));
 	}
 	
-	
-	
+	/**
+	 * Displays password in console with * 
+	 * @param password user created password
+	 * @return gives string back as a series of *
+	 */
 	public static String hideCharacters(String password) {
 		
 		String hiddenPassword = "";
@@ -43,8 +39,6 @@ public class PasswordStrengthChecker {
 	 * @param strengthScore score to determine the strength output
 	 * @return true if password is correct length else false
 	 */
-	
-	
 	public static boolean isCorrectLength(String password) {
 		if (password.length() >= 8 && !password.contains(" ")) {
 			return true;
@@ -81,5 +75,28 @@ public class PasswordStrengthChecker {
 			System.out.println("*** PASSWORD MUST CONTAIN AT LEAST ONE SPECIAL CHARACTER ***");
 			return false;
 		}
+	}
+	
+	
+	public static String passwordStrength(int strengthScore, String password) {
+		
+		if (isCorrectLength(password)) {
+			strengthScore++;
+		}
+		if(hasUppercase(password)) {
+			strengthScore++;
+		}
+		if(hasSpecialCharacter(password)) {
+			strengthScore++;
+		}
+		
+		if (strengthScore == 1) {
+			return "Weak";
+		} else if (strengthScore == 2) {
+			return "Medium";
+		} else if (strengthScore == 3) {
+			return "Strong";
+		}
+		return "*** PASSWORD NOT STRONG ENOUGH TRY AGAIN ***";
 	}
 }
