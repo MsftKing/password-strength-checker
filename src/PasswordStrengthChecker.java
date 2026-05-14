@@ -24,14 +24,14 @@ public class PasswordStrengthChecker {
 	 */
 	public static String hideCharacters(String password) {
 		
-		String hiddenPassword = "";
+		StringBuilder hiddenPassword = new StringBuilder();
 		
 		for (int i = 0; i < password.length(); i++) {
-			hiddenPassword += "*";
+			hiddenPassword.append("*");
 		}
 		
-		return hiddenPassword;
-	}
+		return hiddenPassword.toString();
+		}
 	
 	/**
 	 * isCorrectLength determines if password is 8 characters or longer
@@ -69,7 +69,7 @@ public class PasswordStrengthChecker {
 	 */
 	
 	public static boolean hasSpecialCharacter(String password) {
-		if (password.matches(".*[!-*].*")) {
+		if (password.matches(".*[^a-zA-Z0-9].*")) {
 			return true;
 		} else {
 			System.out.println("*** PASSWORD MUST CONTAIN AT LEAST ONE SPECIAL CHARACTER ***");
